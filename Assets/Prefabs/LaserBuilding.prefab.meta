@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e8b4216f3f61fd04787f914a67bb57de
 timeCreated: 1484874909
+=======
+guid: 192de40ac41931049a73701d627fe910
+timeCreated: 1484641016
+>>>>>>> refs/remotes/KatzeWire/Andys_Branch
 licenseType: Free
 NativeFormatImporter:
   userData: 
