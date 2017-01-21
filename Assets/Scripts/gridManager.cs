@@ -165,11 +165,11 @@ public class gridManager : MonoBehaviour {
             for (int col = 0; col < theGrid.getDimX(); col++) {
                 if ((row%2 == 0 && col%2 == 0) || (row % 2 != 0 && col % 2 != 0)) Gizmos.color = new Color(1f, 1f, 1f, 1f);
                 else Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                Gizmos.DrawCube(new Vector3((-dimX/2)+col+0.5f, -0.5f, (-dimY/2)+row+0.5f), Vector3.one);
-                if (!theGrid.getCellInfo(col, row).isEmpty) {
-                    Gizmos.color = theGrid.getCellInfo(col, row).owner == Player.PlayerOne ? new Color(1f, 0, 0, 1f) : new Color(0, 1f, 0, 1f);
-                    Gizmos.DrawCube(new Vector3((-dimX / 2) + col + 0.5f, 0.5f * 0.8f, (-dimY / 2) + row + 0.5f), Vector3.one * 0.8f);
-                }
+                Gizmos.DrawCube(new Vector3(col+0.5f, -0.5f, row+0.5f), Vector3.one);
+                //if (!theGrid.getCellInfo(col, row).isEmpty) {
+                    //Gizmos.color = theGrid.getCellInfo(col, row).owner == Player.PlayerOne ? new Color(1f, 0, 0, 1f) : new Color(0, 1f, 0, 1f);
+                    //Gizmos.DrawCube(new Vector3((-dimX / 2) + col + 0.5f, 0.5f * 0.8f, (-dimY / 2) + row + 0.5f), Vector3.one * 0.8f);
+                //}
             }
         }
     }
