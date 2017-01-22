@@ -34,14 +34,15 @@ public class setupManager : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         UpdateSelection();
-        if(!pOneCanLaser && !pTwoCanLaser)//when players cant place lasers, not laser phase
+        if (!pOneCanLaser && !pTwoCanLaser)//when players cant place lasers, not laser phase
         {
             laserPhase = false;
             pOneCanLaser = true;//changing one keeps it from coming back here
         }
-        else if(!pOneCanBase && !pTwoCanBase)//when players cant place bases end basePhase start laserPhase
+        else if (!pOneCanBase && !pTwoCanBase)//when players cant place bases end basePhase start laserPhase
         {
             basePhase = false;
             pOneCanBase = true;//changing one keeps it from coming back here
@@ -49,28 +50,34 @@ public class setupManager : MonoBehaviour {
             pOneCanLaser = true;
             pTwoCanLaser = true;
         }
-        if (Input.GetMouseButtonDown(0) && basePhase)//P1 base place
+        if (basePhase)
         {
-            PlaceBaseLaser(Player.PlayerOne, Building.Base, Base);
-            pOneCanBase = !pOneCanBase;
+            if (Input.GetMouseButtonDown(0) && pOneCanBase)//P1 base place
+            {
+                PlaceBaseLaser(Player.PlayerOne, Building.Base, Base);
+                pOneCanBase = !pOneCanBase;
+            }
+            else if (Input.GetMouseButtonDown(1) && pTwoCanBase)//P2 base place
+            {
+                PlaceBaseLaser(Player.PlayerTwo, Building.Base, Base);
+                pTwoCanBase = !pTwoCanBase;
+            }
         }
-        else if (Input.GetMouseButtonDown(1) && basePhase)//P2 base place
+        else if (laserPhase)
         {
-            PlaceBaseLaser(Player.PlayerTwo, Building.Base, Base);
-            pTwoCanBase = !pTwoCanBase;
+            if (Input.GetMouseButtonDown(0) && pOneCanLaser)//P1 laser place
+            {
+                PlaceBaseLaser(Player.PlayerOne, Building.Laser, Laser);
+                pOneCanLaser = !pOneCanLaser;
+            }
+            else if (Input.GetMouseButtonDown(1) && pTwoCanLaser)//P2 laser place
+            {
+                PlaceBaseLaser(Player.PlayerTwo, Building.Laser, Laser);
+                pTwoCanLaser = !pTwoCanLaser;
+            }
         }
-        else if (Input.GetMouseButtonDown(0) && laserPhase)//P1 laser place
-        {
-            PlaceBaseLaser(Player.PlayerOne, Building.Laser, Laser);
-            pOneCanLaser = !pOneCanLaser;
-        }
-        else if (Input.GetMouseButtonDown(1) && laserPhase)//P2 laser place
-        {
-            PlaceBaseLaser(Player.PlayerTwo, Building.Laser, Laser);
-            pTwoCanLaser = !pTwoCanLaser;
-        }
-        else if (!pOneCanBase && !pTwoCanBase)
-            pOneCanLaser = pTwoCanLaser = true;
+            else if (!pOneCanBase && !pTwoCanBase)
+                pOneCanLaser = pTwoCanLaser = true;
     }
 
     private void UpdateSelection()//gets the position on the grid, to be replaced with Scott's movement
